@@ -68,4 +68,58 @@ Exercise: Do an inner join name date amount in desc
 	on c.id = o.customerid
 	order by name, date, amount desc
 
+Functions:
+convert(varchar(10), date, 1) as 'Order Date'
+sum(o.Amount) as 'Total Amount of Sales'
+avg(
 
+
+Where (boolean expression) clause comes after the on clause
+
+Boolean expression: evaluates to true or false
+	example: where amount >= 500
+		where o.amount > 250 and o.amount < 600
+
+and		or		not
+>>>>>>look in notebook for explanation (Tues 1/30/2018)
+
+Example:
+select * from customer
+where state != 'KY' and state != 'IN'
+
+same thing
+
+select * from customer
+where state not in ('KY', 'IN')
+
+Say we want to find the total number of sales per customer displayed...
+clause before the order by clause called: group by table name and column name
+	group by c.name
+
+			select
+			from
+			join
+			on
+			where
+			group by
+			order by
+			having 
+
+**having clause (just like a where clause but is for summing amounts
+having sum(amount) > 1000
+
+
+Subselect: a select statement inside another select statment
+	Example: select customerid, date, amount
+		from [order]
+		where amount > (
+		select avg(amount) from [order]
+		)
+
+select * 
+from [order] o
+where amount < (select max(amount)
+from [order] o
+join customer c
+on c.id = o.CustomerId
+where c.state = 'OH')
