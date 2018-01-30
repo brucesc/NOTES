@@ -1,0 +1,71 @@
+SQL - Structured Query Language
+Database (DB) - store and retrieve data
+SSMS - SQL Server Managment Studio
+
+SQL is a declarative language vs other languages we learn are procedural.
+Procedural is very specific step by step
+Declarative is broad, take the quiz is how you take the quiz.
+
+SQL is not case sensitive
+SQL use single quotes only ' not "
+
+!= is not equal (! is not)
+
+What is a database: a collection of tables
+Table : a collection of rows and columns
+Rows represent records - each person represented by a row
+Columns represent fields - name, yrs experience, age, eye color, etc.. are represented by a column
+
+SQL statement is called a Query
+Table names are usually nouns
+
+you can highlight something in SQLQuery to execute only that portion
+
+***CREATE A REPOSITORY FOR SQL***
+
+Ctrl + r hot key for SQL messages
+Ctrl + n hot key for New Query
+
+****Key word to remember while reading SQL tables: Select
+1. Select (reading data)
+2. could list all the columns out that you want to read or... for all the columns in the same order they are represented in the table use *(asterisk): field to view
+3. From (prefaces the table name)
+4. Table name (in our case is Customer)
+		Select * From Customer
+
+Order is a keyword in SSMS, so to tell SSMS that the table name order is not a keyword is [order]. turns order into an object not a keyword
+
+Result Set: is the info spit out after Execute (F5)
+
+**Join View (in SSMS/SQL): example 
+	select Name, Date, Amount
+	from [order]
+	join customer
+	on [order].customerid = customer.id
+
+Alias for table name: example [order] o 
+	o now represents [order]
+Always follows from or join for table names
+Alias for columns: as '---' example: Name as 'Customer Name'
+
+**Inner Join: (type of Join View) two tables referenced with something in common
+
+Manipulating the order of the output table (Result Set)
+Order by Clause (almost aways will be the last thing in your Query)
+
+Order by Clause: example
+order by (column name), (column name) desc
+
+**Outer Join (use left join) left means to produce in result set even if there isnt a value (NULL)
+
+Null is null is null, has no value yes... it is its own thing. Does not have a value
+
+Exercise: Do an inner join name date amount in desc
+
+	select Name, Date, Amount
+	from [order] o
+	join customer c
+	on c.id = o.customerid
+	order by name, date, amount desc
+
+
