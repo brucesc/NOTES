@@ -1,3 +1,5 @@
+Day 1 of SQL
+
 SQL - Structured Query Language
 Database (DB) - store and retrieve data
 SSMS - SQL Server Managment Studio
@@ -123,3 +125,86 @@ from [order] o
 join customer c
 on c.id = o.CustomerId
 where c.state = 'OH')
+
+---------------------------------------------------------
+
+Day 2 of SQL
+
+Design feature allows you to create tables within SSMS
+
+data types:
+int - integer (1,2,3,4,5,6,....)
+varchar(30) - allows 30 maximum characters (Steven Bruce)
+	variable character
+nvarchar is for international symbols for 2 bit characters
+decimal(3,1) - 
+
+*Primary Key(PK): uniquely identifies every row
+	     cannot change (do not ever change)
+	     no inherent value
+	     PK can NEVER be NULL
+Greg labels it as (id)
+
+Foreign Key: is a primary key in another table
+	Example: MajorId
+		may be NULL
+
+new Function:
+concatination: CONCAT( )
+	Example: select concat(s.FirstName, ' ', s.LastName) as 'Name', c.Description as 'Class'
+
+--Find all the classes that Aaron Zell is taking
+select concat(s.FirstName, ' ', s.LastName) as 'Name', c.Description as 'Class'
+from student s
+join Schedule sc
+	on s.id = sc.studentid
+join class c
+	on c.id = sc.ClassId
+where s.FirstName = 'Aaron' and s.LastName = 'Zell'
+
+Join Clause practice is saved as an SQL Practice Assignment
+
+------------END SELECT STATEMENTS-----------
+
+Update Keyword:
+Update statement - to change data that already exists
+Syntax:
+update tablename set
+Column = 'value',
+Column = 'value'
+where column = 'value' and column = 'value'
+example: update student set
+	 FirstName = 'Gregory',
+	 LastName = 'Doud'
+	 Where FirstName = 'Greg' and LastName = 'Duod'
+Note for Where, use id number if you know it!
+
+***If you do an update statement you want a Where clause
+
+= is an assignment, figure out what is on the right side and shove it into the left
+
+Note ' ' go around strings like a name, not around numbers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
