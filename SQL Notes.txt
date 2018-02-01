@@ -187,6 +187,108 @@ Note ' ' go around strings like a name, not around numbers
 
 -----------END UPDATE STATEMENTS-------------
 
+Insert Syntax: {} means not a requirement
+INSERT into <tablename>
+{(columnname1, columnname2,...)}
+Values
+(value1, value2, ...)
+
+Example: insert into contact values ('Steven', 'Brucesc726@gmail.com', '513-600-2851')
+
+
+*Note amount of values must match the amount of columns and Primary Keys cannot be included.
+
+-------------END INSERT STATEMENTS---------
+BE VERY CAREFUL WITH DELETE: HAVE A WHERE STATEMENT
+Delete from student
+where <condition>
+
+Select *(In place of delete to double check delete)
+Delete from Student
+where <condition>
+
+
+Data Manipulation Language (DML): Select, Insert, update, delete
+
+Data Definition Language (DDL): defining data, building tables
+
+FK ---> PK
+1. Restrict: if a PK is referenced to a FK then delete will fail on PK
+2. Nullify: delete will NULL anything under the criteria such as where id = 3
+3. Cascade: delete the major record then all the students that are pointing to that record
+
+---------Start Point of DDL--------------
+DML: Select, Insert, Update, Delete
+DDL: Create, Alter, Drop
+Create - something new
+Alter - changing something
+Drop - like deleting
+
+Syntax:
+Create <object we are creating> Table Contact (<Column definitions> Name varchar(50) not null, 
+email varchar(50), 
+Phone varchar(12) not null)
+
+Create Table Syntax
+CREATE TABLE <tablename> (
+<columnname> <type> {not null} {default n}
+{check (<condition>)}
+{primary key {identity(seed, increment)}}
+[or..]
+{foreign key references <primarytable>(columnname)}
+{unique {clustered}},
+...
+)
+
+check (allows  you to define what goes into the column like a, b, or  c)
+
+unique: you would use this on things like user names, no two users could have a username of Brucesc.
+	*do not need to worry about the cluster feature
+
+----------------------------
+Column Types (common)
+int - positive or negative Integer
+{n}varchar(len) - {DBCS|} Ascii string with max length of 'len'
+bit - represents a boolean; values of 0 (false) and 1 (true). Can also be NULL...
+datetime - a date includeing a time component
+decimal(digits, decimals) - represents decimal numbers; 'digits' represents all digits in number and 'decimals' represents number of decimal places
+
+-----------------------------------------
+
+Columns - Null or Not Null
+Declares whether a column value can be null.
+Default is column CAN be null
+If not null:
+	Can never be set to null
+	Must be provided a value on insert unless a default exists
+
+**If you can't decided to NULL or Not NULL, make it Not NULL
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
