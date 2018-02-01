@@ -264,12 +264,53 @@ If not null:
 
 **If you can't decided to NULL or Not NULL, make it Not NULL
 
+---------------------
 
+Create Table Example:
 
+CREATE TABLE Employee (
+Id int primary key identity(1,1),
+Name nvarchar(50) not null,
+YearsOfService int,
+DepartmentId int foreign key references Department(Id),
+Active bit not null default 1,
+DateCreated datetime not null default Now(),
+DateUpdated datetime
+)
 
+FK must be created after their PK are made
 
+---------------------------
+Drop Feature:
+Drop Table <tablename>
+if exists ---> Drop Table if exists <tablename>
 
+Drop:
+Employee
+Manager
+Department
 
+Create:
+Department
+Manager
+Employee
+
+-----------------------
+CREATE Database <DB>
+USE <DB>
+
+Example Start:
+
+use master -- This is best practice for starting a database
+go
+drop database if  exists Corporate
+go
+Create database Corporate
+go
+use Corporate
+go
+
+--------------------------
 
 
 
