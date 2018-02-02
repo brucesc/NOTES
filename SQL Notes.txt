@@ -311,11 +311,30 @@ use Corporate
 go
 
 --------------------------
+DDL cont.. (Create, Drop, Alter)
+Alter
+alter table <tablename>employee
+	add <column> cellphone nvarchar(12) 
+>>>>Because rows already exist we cannot say the new column is not null or the Execute will fail. 
+	there isnt any insert data for the new column yet so it is automatically NULL.
 
+after inserting the data needed for cellphone put in this script:
 
+alter table employee
+	alter column cellphone nvarchar(12) not null
 
+/*
+now everything between /* and */ is commented out no matter how many lines it runs
+*/
 
-
+----------------------
+The following are the most commonly used SQL aggregate functions:
+AVG – calculates the average of a set of values.
+COUNT – counts rows in a specified table or view.
+MIN – gets the minimum value in a set of values.
+MAX – gets the maximum value in a set of values.
+SUM – calculates the sum of values.
+----------------------------------------
 
 
 
