@@ -335,35 +335,160 @@ MIN – gets the minimum value in a set of values.
 MAX – gets the maximum value in a set of values.
 SUM – calculates the sum of values.
 ----------------------------------------
+Capstone Database
+PURCHASE REQUEST DATABASE
+
+-----------------------------
+View looks like its own table
+to create views you need to use DDL
+
+create view <view name> as
+	select statement....
+
+views are like hotkeys, you can save a whole select statement and reuse it without typing the whole statement out again
+
+-------------------------------------------------
+Stored Procedure
+syntax
+Statements should end with a semicolon (;)
+Variables must:
+	begin with an at sign (@)
+	include a SQL type (e.g. int, varchar(n), bit, etc)
+	BEGIN ... END for statement block
+
+Create & Alter
+Create|Alter Procedure <procedurename>
+{@<paramname> <type>, ...}
+AS
+BEGIN
+-- T-SQL code goes here
+END
+
+alter procedure HelloWorldSproc
+AS
+BEGIN
+	SELECT 'Hello, world!';
+END
+go
+EXEC HelloWorldSproc;
+
+Parameters allow values to be exchanged with the object calling the procedure
+must be declared before the AS keyword
+
+Procedures can return many types of data including integers, strings and result sets
+RETURN {(Value)}
+
+exec sproc1 @param1=0, @param2='abc',...;
+	declarative parameters - Recommended
+	parameters can be supplied in any order
+
+exec sproc1 0, 'abc', ...;
+	positional parameters - NOT RECOMMENDED
+	Parameters must be supplied in order declared
+
+PRINT instead of SELECT will give a message
+
+FUNCTIONS
+	Aggregate
+	Conversion
+	Date and Time
+	String
+	System
+Conversion Functions
+	CAST/CONVERT - changes one type to another
+
+CAST(@nbr as varchar) -- this is a temporary thing
+Convert is a permanent change
+
+Here are two different ways to create my Doubler Procedure:
+
+Create|alter procedure Doubler
+	@nbr int = 0
+AS
+BEGIN
+	--Print CAST(@nbr as varchar) + '* 2 = ' + Cast(@nbr*2 as varchar);
+	Print concat(@nbr, '* 2 = ', @nbr*2);
+END
+go
+EXEC Doubler @nbr = 5;
+
+Another Example for procedure addthese:
+alter procedure addthese
+	@nbr1 int = 0,
+	@nbr2 int = 0
+AS
+BEGIN
+	Print concat(@nbr1, ' + ', @nbr2, ' = ', @nbr1+@nbr2);
+END
+go
+EXEC addthese @nbr1 = 9959, @nbr2 = 1297;
+
+Execute (F5) will print out in the messages:
+9959 + 1297 = 11256
+
+**Print is like a select command but the output is in a string form
+	Remember we use ' ' for strings and no quotes for integers/numbers
+
+when you use a parameter just use the name, never in quotes
+
+Date/Time Functions
+getdate() - retrieves the system date and time
+day(d)/month(d)/year(d) - retrieves the number of the day/month/year for the data (d) provided
+dateadd(part,nbr,d) - adds nbr to the date part fo the date d
+	select dateadd(day, 100, getdate())
 
 
+STRING FUNCTIONS:
+concat() - concatenates two or more strings
+format() - formats a value
+left()/right() returns set of left/right most characters
+len() - returns length of a string
+lower()/upper() - converts string to all lower or upper case
+Itrim()/trim()/rtrim() - removes leading, leading and trailing, or trailing spaces from a string
+replace(s,src,repl) - replaces all occurrences of src with repl in s [Note: useful to transform single quote to two  single quotes]
+substring() - returns part of string using start and len
+
+replace(@name, '''','''''')
+' '' '' '
+
+System Functions
+@@ERROR - last error number generated
+@@IDENTITY - returns last generatedd identity value
+ISNULL()- returns an alternate vale if variable is null
 
 
+DECLARE
+Used to define variables
+Variables must be defined before being used
+Declared variables may be initialized when declared
+
+DECLARE @firstname nvarchar(30), @age int;
+DECLARE @lastname nvarchare(30) =N'Doud'; 
+
+	the N in N'Doud' means double bit for the nvarchar
+
+SET
+used to give a variable a value
+SET @idx = 0;
+SET @name = N'Gred';
 
 
+Set Variable to SQL result
+you can set a variable to a value from a SQL select statement
+the following example sets the variable @id to the Id of the customer and @city to the City whose name is provided
+
+DECLARE @id int, @city = c.City
+From Customer c
+Where c.Name = 'MAX Technical Training';
+
+Print N'The city is '
+
+Flow Control
+Begin .. End - statement block
+IF <condition><trueblk> ELSE<falseblk
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+factorial(n) = 1*2*3*...*n
 
 
 
