@@ -1,0 +1,291 @@
+BASICS
+started using bits to create bytes (half a byte is a nibble)
+how many bytes is a KB? 1000 or 1024 KiB
+
+Managed vs Unmanaged:
+.NET manages your memory
+garbage collector utility
+we dont have to worry about all the low level memory managment
+
+Microsoft intermediate language (MSIL)
+
+Common type system (CTS)
+
+console is a class
+system.console.writeline()
+namespace class method
+
+namespace childname space 
+namespace defines the method
+
+using System; -- if i dont tell you otherwise use system namespace
+
+way of grouping all these features in .NET into categories
+
+you use a namespace to define down a class
+
+collection of classes, inside the classes are methods
+put them all together in an Assembly
+dynamic linking library (.DLL)
+
+***Microsoft developers network (MSDN) research for what class goes in what assembly
+
+How to reference an assembly?
+
+Remember NuGet**
+
+Software development toolkits (SDK's)
+
+if you close a pane (ie. solution explorer go to view
+
+Spaces, Tabs, and carriage returns are free
+
+every statement inside a codeblock has a ending semicolon (;)
+codeblocks do not
+
+All methods do work and all methods must have ()
+
+
+
+
+First off, are there any addition assemblyes needed
+
+in C# // is one way to comment out
+
+default namespace is the project name
+
+void means it returns nothing
+There can be only one Main()
+
+C# requires double quotes (" ")
+
+String Formating
+("{0} owes us {1} as of {2}",s,x+y,date)
+
+
+
+//System.Console.Beep(400, 5000);
+           //System.Console.WriteLine("Beep");
+            //System.Speech.Synthesis.SpeechSynthesizer speak = new System.Speech.Synthesis.SpeechSynthesizer();
+            //speak.Speak("Hello world! Want to play a game?");
+
+&copy;
+
+16 bit is 2 bytes
+
+@ is to ignore escape characters
+
+Say I want to make a translator
+
+Console Apps are good for scheduled jobs
+
+pattern for creating variables
+data type (ie. int) <name of variable> (ie. X or Price)
+
+Camel Cassing: priceFinished
+Pascal Cassing: PriceUnFinished
+
+float length = 5.5F;
+
+decimal cost = 5.5M;
+
+Cannot use (,) in numbers because a comma (,) is considered a seperator
+
+format numbers on output {0:N} {0:D} {0:C}
+
+//int length;
+            //int width;
+
+            //Console.WriteLine("Please enter the Length:");
+            //Console.WriteLine("Please enter the Width:");
+            //length = Console.WriteLine("Please enter the Length:");
+            //width = Console.WriteLine("Please enter the Width:");
+
+            //int Area = length * width;
+
+            //Console.WriteLine("The Area is: {0}" Area)
+
+------------MINE ^^ -------------Teachers vv---------------
+
+            Console.WriteLine("What's the length? ");
+            string stringLength = "";
+            stringLength = Console.ReadLine();
+            decimal length = 0;
+            length = decimal.Parse(stringLength);
+
+            Console.Write("What's the width? ");
+            string stringWidth = "";
+            stringWidth = Console.ReadLine();
+            decimal width = 0;
+            width = decimal.Parse(stringWidth);
+
+            Console.WriteLine("The area is " + length * width);
+
+            Console.ReadLine();
+
+
+
+when you see var it is asking for the type or it helps you create objects from classes (will use this a lot in Linq queries) lets the compiler figure out what type 'it' is.
+
+Console.WriteLine("") --> these are strings
+Console.ReadLine() --> these are also strings
+
+So, in our calculate the area example we had to ask the user for an input (length/width) which was then given back to us in a string type. This data (string type) needed to be parsed (var.parse)
+
+For Loop - good for when we want to loop something for a known number of times
+
+for( int i=0; i < 100; i = i + 1) -----> i = i + 1 is the same thing as i++
+{
+	COnsole.WriteLine("I wil never...");
+}
+
+While loop and do/while loop:
+
+while is 0 or many times : while(true) change the true or it will run forever, dont false or it wont run
+Read the data until the condition ends
+
+do/while is 1 or many times : good for interacting with humans
+
+int[] is saying an array of integers
+
+string status = "Active";
+int val;
+if (status == "Active")
+{
+val =1;
+}
+else
+{
+val = 2
+}
+
+int val2 = status == "Active" ? 2:1;
+
+everything in .NET is a class
+classes are blocks of code
+compile into either exe or dll (executible) or (assembly)
+executibles load dlls
+
+
+---------------------KNOW THESE FOR A JOB INTERVIEW-----------------
+
+***How many looping structures, list them?
+for (count)
+foreach (iterate)
+while (0 or more times)
+do {} while (1 or more times)
+
+***How many conditional structures, list them?
+if
+switch
+x = () ? val1 : val2;
+--------------------------------------------------------------------
+Reading list 2/7/2018 Wednesday Night:
+255-263
+273-278
+325-329
+330-351
+------------------------------------------------------------------------------
+COLLECTIONS:
+Single variable name that holds a lot of items (objects)
+
+//int[] things = new int[6]; -- an integer array called things is initialized with 6 spots
+            //for (int i = 0; i < 6; i++) -- for loop
+            //{
+            //    Console.WriteLine("Enter a number: ");
+            //    string theString = Console.ReadLine();
+            //    things[i] = int.Parse(theString);
+            //    total = total + things[i];
+            //}
+            //Console.WriteLine(total);
+
+            //Console.ReadLine();
+
+ArrayList money = new ArrayList();
+            money.Add(5000.99M);
+            money.Add(45.99M);
+            money.Add(768.01M);
+
+            money.Sort();
+
+            foreach (object item in money)
+            {
+                Console.WriteLine((decimal)item*2);
+
+            }
+            Console.ReadLine();
+
+Be able to describe what a stack and queue list are, but know how to use an Array, ArrayList and Hashtable
+
+Data type: Generic Collection <>--> List
+
+see these <> they are talking about generic data type
+-----------------------------------------------------------------------------------------
+Friday 2/9/2018
+
+Things we call Structures and things we call Classes
+
+Methods return:
+nohing
+returns a single type (uses return = )
+return using a REF ( for structures)
+return using an implied REF (for classes)
+return using an OUT
+return using Tuples (C# 7 and later)
+
+Boxing and Unboxing (hiding and showing)
+
+Encapsulation creating the black box?
+Typically will put classes in a separate folder/file
+
+Go back over:
+Loops - For, For each, While, Do While
+Switch Statements
+
+Sololearn.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
