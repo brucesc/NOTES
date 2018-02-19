@@ -243,17 +243,217 @@ Loops - For, For each, While, Do While
 Switch Statements
 
 Sololearn.com
+---------------------------------------------------------------------------------
+Main Method is the entry point to all programs, has to exist in one of the classes and only once. Main does not have to be void, and if it isn't then most likely it will return int. Cannot take the parameters out. More on that later though...
+
+Everything inside the class has access to everything else inside the class, because of the scope
+
+*********Remember to test often and in small increments! (make small changes and test)
+**Have a series of test cases for testing
+
+Build compiles the solution
+Start runs the execution
+
+****Refactoring: NEVER duplicate code, if you see a time when you will have to duplicate, create a method instead
+
+base. is a keyword we can use when our current class has inherited from a parent class
+
+ToString() is helpful for turning other data types into strings
+
+
+
+
+Three aspects of object oriented programming (OOP):
+
+**Encapsulation: bring together the things that go together and separate them from the rest of the world. Class creation. properties and methods are brought together and serparated from the rest of the world
+
+**Inheritance: take a parent class create a new class that has the same properties as the parent and add something new. When you inherit you get everthing that is not private
+
+**Polymorphism: (virtual/override) 
+
+Composition: (the 4th pillar of OOP) using a class inside of another class
+
+Interface: Similar to a class except:
+	1. No properties
+	2. Methods, but no body
+.NET framework is filled with them. Need to know how to use them
+Defined with a capital I
+Interfaces can inherit other interfaces
+is a contract between two entities. The way they are going to interact
+
+Interpolation ($): string message = $"A(n) {animalName} says {animalSound}."; // shortcut concatination (interpolation)
+
+---------------------------------------------------------------------
+Projects: Executables (.exe) need some kind of file to run it
+Putting everthing into one executable is not always the best way
+Dynamic Link Library (.dll)
+
+exe depends on a dll
+dll can share other dll
+.config is xml code
+.pdb is the debugging information that visual studio provides
+
+use the library to store your usable information like classes
+dll's can be shared (assemblys)
+
+FirstName = "Steven";  this is an assignment statement FYI
+
+SQL interface to C#, Accessing SQL from C#:
+Some objects we have to work with:
+Connection: need Server, Database, Trusted_Connection
+	Server: What machine are we accessing
+	Database: Which database are we accessing
+Command
+Data Reader
+Results Set
+Column
+
+
+Connection:
+ public class SqlCustomer
+    {
+        // create a method to list all the customers from SSMS
+        public void List()
+        {
+            string connStr = @"server=DESKTOP-7CC7HCF\SQLEXPRESS;database=SqlTutorial;Trusted_Connection=true";
+            // conn is a convention
+            SqlConnection conn = new SqlConnection(connStr);
+            conn.Open();
+
+
+        }
+    }
+
+Command:
+SqlCommand cmd = new SqlCommand(sql, conn);
+
+DataReader:
+SqlDataReader reader = cmd.ExecuteReader();
+
+ResultSet:
 
 
 
 
 
+public class SqlCustomer
+    {
+        // create a method to list all the customers from SSMS
+        public void List()
+        {
+            string connStr = @"server=DESKTOP-7CC7HCF\SQLEXPRESS;database=SqlTutorial;Trusted_Connection=true";
+            // conn is a convention
+            SqlConnection conn = new SqlConnection(connStr);
+            conn.Open();
+            if (conn.State != System.Data.ConnectionState.Open)
+            {
+                Console.WriteLine("The connection didn't open.");
+                return;
+            }
+            //Console.WriteLine("Connection open successful!");
+            string sql = "select * from customer"; // run your sql statements in SSMS to verify they work first
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (!reader.HasRows)
+            {
+                Console.WriteLine("Result has no row.");
+                return;
+            }
+            while(reader.Read())
+            {
+                string name = reader.GetString(reader.GetOrdinal("Name"));
+                Console.WriteLine($"Name is {name}");
+            }
+
+
+            conn.Close(); //ALWAYS CLOSE WHEN YOU ARE DONE WITH THE CONNECTION!!!
 
 
 
+where you have a table in sql you will have a class in c#
+
+stuff them in a collection. what and how many? dont know, so use List<type goes here>
+
+List<Customer> customers = new List<Customer>();
+
+
+----------------------------------------------------------------------------
+
+Example to Open a connection to SQL through C# Visual Studio:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks; 
+using System.Data.SqlClient; //added this
+
+namespace SqlReadCustomer
+{
+    public class SqlCustomer
+    {
+        // create a method to list all the customers from SSMS
+        public List<Customer> List() // List<Customer> is a type and can only take customer things. List is like an array but it is dynamic
+        {
+            // Must first establish a connection to SQL. Need what server is hosting the database and what database is holding the instance you want
+            string connStr = @"server=DESKTOP-7CC7HCF\SQLEXPRESS;database=SqlTutorial;Trusted_Connection=true"; // server= This can be found in SSMS at the master database level; database= Name of the database; Trusted_Connection= can only use this when accessing a database on your local machine
+            // conn is a convention
+            SqlConnection conn = new SqlConnection(connStr); // New instance of SqlConnection (don't forget using statement System.Data.SqlClient;) then pass in the connection string (previous line)
+            conn.Open(); // Method to open an sql connection
+            if (conn.State != System.Data.ConnectionState.Open) // if statement to test for a connection made. the .State
+            {
+                Console.WriteLine("The connection didn't open.");
+                return null; // because we cant return List<Customer> if it returns null then we know something went wrong
+            }
+            //Console.WriteLine("Connection open successful!");
+            string sql = "select * from customer"; // run your sql statements in SSMS to verify they work first. 
+            SqlCommand cmd = new SqlCommand(sql, conn); // SqlCommand allows us to make sql commands. instance of SqlCommand (cmd) with parameters filled in. sql is our string select statement. conn is the SqlConnection
+            SqlDataReader reader = cmd.ExecuteReader(); // DataReader step. Called the execute reader method. returns a SqlDataReader object
+            if (!reader.HasRows) // If this has rows move past, if not display this message
+            {
+                Console.WriteLine("Result has no row.");
+                return null;
+            }
+
+            List<Customer> customers = new List<Customer>(); // Generic list of customer things we are going to fill
+
+
+            while(reader.Read()) // reader points to the first row
+            {
+                int id = reader.GetInt32(reader.GetOrdinal("Id"));                
+                string name = reader.GetString(reader.GetOrdinal("Name"));
+                string city = reader.GetString(reader.GetOrdinal("City"));
+                string state = reader.GetString(reader.GetOrdinal("State"));
+                bool isCorpAcct = reader.GetBoolean(reader.GetOrdinal("IsCorpAcct"));
+                int creditLimit = reader.GetInt32(reader.GetOrdinal("CreditLimit"));
+                bool active = reader.GetBoolean(reader.GetOrdinal("Active")); // pull all these out and stuff them into local variables (below)
+
+                Customer customer = new Customer(); // take those pulled data and put them into and instance of customer
+                customer.Id = id;
+                customer.Name = name;
+                customer.City = city;
+                customer.State = state;
+                customer.IsCorpAccount = isCorpAcct;
+                customer.CreditLimit = creditLimit;
+                customer.Active = active;
+
+                customers.Add(customer); // take the newly filled instance of Customer customer and stuff it into the List<Customer> customers
+
+
+                //Console.WriteLine($"Name is {name}");
+            }
+
+
+            conn.Close(); //ALWAYS CLOSE WHEN YOU ARE DONE WITH THE CONNECTION!!!
+            return customers;
+        }
+    }
+}
 
 
 
+-----------------------------------------------------------------------------------------
+TEST DRIVEN DEVELOPMENT
 
 
 

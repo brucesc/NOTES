@@ -1,0 +1,69 @@
+// CustomerController cust = new CustomerController(); // created an instance of
+                                                                //// List<Customer> customers = cust.List(); // call from the exe to the dll
+
+            // List<Customer> customers = cust.SearchByCreditLimitRange(300000, 1000000);
+
+            // foreach (Customer customer in customers)
+            // {
+            //     Console.WriteLine($"{ customer.Id} | { customer.Name} | { customer.City} | { customer.State} | {customer.IsCorpAccount} | {customer.CreditLimit} | {customer.Active}");
+            // }
+
+            // //Customer customer = cust.Get("OH");
+            // //Console.WriteLine($"{ customer.Id} | { customer.Name} | { customer.City} | { customer.State} | {customer.IsCorpAccount} | {customer.CreditLimit} | {customer.Active}");
+            // Console.ReadKey();
+
+
+            // // Homework: See if you can produce a list of orders!
+
+            //// If I want to see an output of all customers in the sate of Ohio... go.
+            //CustomerController cust = new CustomerController();
+            //List<Customer> customers = cust.Get("OH");
+            //foreach (Customer customer in customers)
+            //{
+            //    Console.WriteLine($"{ customer.Id} | { customer.Name} | { customer.City} | { customer.State} | {customer.IsCorpAccount} | {customer.CreditLimit} | {customer.Active}");
+
+            //}
+            //Console.ReadKey();
+            //// Victory!
+
+
+            //CustomerController cust = new CustomerController();
+            //List<Customer> customers = cust.SearchByName("in");
+
+            //foreach (Customer customer in customers)
+            //{
+            //    Console.WriteLine($"{ customer.Id} | { customer.Name} | { customer.City} | { customer.State} | {customer.IsCorpAccount} | {customer.CreditLimit} | {customer.Active}");
+
+            //}
+            //Console.ReadKey();
+
+
+            //CustomerController cust = new CustomerController();
+
+
+            //c.Id = 9;
+            //c.Name = "SuperMaxX";
+            //c.City = "Mason";
+            //c.State = "OH";
+            //c.IsCorpAccount = true;
+            //c.CreditLimit = 100000000;
+            //c.Active = true;
+
+            //if (!cust.Update(c))
+            //{
+            //    Console.WriteLine("Update Failed");
+
+            //}
+            //List<Customer> customers = cust.List();
+            //foreach (Customer customer in customers)
+            //{
+            //    Console.WriteLine($"{ customer.Id} | { customer.Name} | { customer.City} | { customer.State} | {customer.IsCorpAccount} | {customer.CreditLimit} | {customer.Active}");
+            //}
+
+            //Console.ReadKey();
+
+
+            // Ok I want to delete a customer from the Database. 
+            CustomerController cust = new CustomerController();
+            cust.Delete(12);
+            Console.ReadKey();
